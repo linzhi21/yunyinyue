@@ -1,0 +1,94 @@
+<view class="indexContainer">
+<!-- swiper组件在使用的时候默认是有一个高度是300rpx 
+如果你想让自己的轮播图高度发生改变，必须自己给swiper设置高度
+否则，高度永远都是300rpx-->
+  <!-- swiper  轮播图 -->
+  <swiper class="bannerSwiper" indicator-dots indicator-active-color="red">
+    <swiper-item class="bannerItem" wx:for="{{bannerList}}" wx:key="bannerId">
+      <image class="bannerImg"   src="{{item.pic}}">
+      </image>
+    </swiper-item>
+    <!-- <swiper-item class="bannerItem">
+      <image class="bannerImg" src="../../static/images/mylove.jpg"></image>
+    </swiper-item>
+    <swiper-item class="bannerItem">
+      <image class="bannerImg" src="../../static/images/mylove.jpg"></image>
+    </swiper-item> -->
+  </swiper>
+
+  <!-- nav  导航-->
+  <view class="navList">
+    <view class="navItem">
+      <text class="iconfont icon-meirituijian"></text>
+      <text class="navText">每日推荐</text>
+    </view>
+    <view class="navItem">
+      <text class="iconfont icon-gedan1"></text>
+      <text class="navText">歌单</text>
+    </view>
+    <view class="navItem">
+      <text class="iconfont icon-paihangbang"></text>
+      <text class="navText">排行榜</text>
+    </view>
+    <view class="navItem">
+      <text class="iconfont icon-diantai"></text>
+      <text class="navText">电台</text>
+    </view>
+    <view class="navItem">
+      <text class="iconfont icon-zhiboguankanliangbofangsheyingshexiangjixianxing"></text>
+      <text class="navText">直播</text>
+    </view>
+  </view>
+  <!-- recommend  推荐歌曲-->
+  <view class="recommend">
+    <view class="header">
+      <view class="title">推荐歌曲</view>
+      <view class="content">
+        <text class="leftText">为你精心推荐</text>
+        <text class="rightText">查看更多</text>
+      </view>
+    </view>
+
+    <!-- 使用scroll-view无论是横向滚动还是竖向滚动默认都会有一个很大的高度
+    我们需要给设置为自己的高度
+    默认内部不支持flex，如果需要写flex，要打开开关enable-flex
+    滚动的方向也需要属性去设置 scroll-x/y -->
+    <scroll-view class="recommendScroll" enable-flex scroll-x>
+    <!-- wx:for 后面不要写 空的字符串  -->
+      <view class="scrollItem" wx:for="{{recommend}}" wx:key="id">
+        <image class="itemImg" src="{{item.picUrl}}"></image>
+        <text class="itemText">{{item.name}}</text>
+      </view>
+    </scroll-view>
+  </view>
+  <!-- rank -->
+  <view class="rank">
+    <view class="header">
+      <view class="title">排行榜</view>
+      <view class="content">
+        <text class="leftText">热歌风向标</text>
+        <text class="rightText">查看更多</text>
+      </view>
+    </view>
+    <swiper class="rankSwiper" 	previous-margin="40rpx" next-margin="80rpx">
+      <swiper-item class="swiperItem" wx:for="{{rankList}}" wx:key="id">
+        <view class="main">
+          <view class="title">{{item.name}}</view>
+          <view class="songList">
+          <!-- song为每一项,index为下标 -->
+            <view class="songItem" 
+                wx:for="{{item.songList}}"
+                wx:for-item="song"
+                wx:for-index="idx"
+                wx:key="id"
+                >
+              <image class="songImg" src="{{song.songImg}}"></image>
+              <text class="count">{{idx+1}}</text>
+              <text class="songName">{{song.name}}</text>
+            </view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>
