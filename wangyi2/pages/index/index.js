@@ -45,12 +45,12 @@ Page({
          //把获取到的数据  push到这里面  一会setdata修改 再把这个值赋值给初始值
          //我们不能对初始的数据,直接进行修改,只能通过 this.setData({}) 赋予
         rankListData.push({ 
-            id:result.playlist.id,
+            // id:result.playlist.id,
             name:result.playlist.name,
             //对榜单里面的歌曲数据  进行裁剪,遍历
             songList:result.playlist.tracks.slice(0,3).map(item=>{
                 return {
-                    id:item.id,
+                    // id:item.id,
                     name:item.name,
                     songImg:item.al.picUrl
                 }
